@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form id="frm1" action="/action_page.php">
+  <font name="name">Имя:</font> <input type="text" name="fname" value=""><br>
+  Пол: <select name="select">
+  <option value ="0"></option>
+  <option value ="1">Men</option>
+  <option value ="2">Women</option>
+</select><br>
+  Номер: <input type="text" name="lname" value=""><br>
+  Дата рождения: <input type="date" name="calendar" value="0001-01-01"
+    max="2010-06-04" min="1900-05-29">
+  <p><input type="file" name="photo" multiple accept="image/*,image/jpeg"><br>
+  Пароль: <input type="text" name="parol" value=""><br>
+</form> 
+
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("frm1");
+    var text = "";
+    var i;
+	if (x.elements[0].value.length < 3){
+		text += "ошибка в имени" + "<br>";
+		document.getElementById("demo").innerHTML = text;}
+	if (x.elements[2].value.length != 12){	
+		text += "ошибка в номере" + "<br>";
+		document.getElementById("demo").innerHTML = text;}
+	if ( x.elements[0].value.search(/\d/) != -1 ) { 
+		text += "ошибка в имени" + "<br>";
+		document.getElementById("demo").innerHTML = text; }
+	if ( x.elements[2].value.match(/[A-zА-я]/g)) { 
+		text += "ошибка в номере" + "<br>";
+		document.getElementById("demo").innerHTML = text; }
+	if ( x.elements[1].value == 0){
+		text += "забыли указать пол" + "<br>";
+		document.getElementById("demo").innerHTML = text;
+	}
+	if ( x.elements[3].value == "0001-01-01"){
+		text += "забыли указать дату рождения" + "<br>";
+		document.getElementById("demo").innerHTML = text;
+	}
+	if ( x.elements[4].files[0].size > 1024000){
+		text += "изображение" + "<br>";
+		document.getElementById("demo").innerHTML = text;
+	}
+	if ( x.elements[5].value.length < 8){
+		text += "Указан не верный пароль" + "<br>";
+		document.getElementById("demo").innerHTML = text;
+	}
+//		{text += "ошибка в поле" + "<br>"};
+ //   document.getElementById("demo").innerHTML = text;
+}
+</script>
+
+</body>
+</html>
